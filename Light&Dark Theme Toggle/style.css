@@ -1,0 +1,103 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  --accent-color: orangered;
+  --background-color: white;
+  --text-color: black;
+  --button-text-color: var(--background-color);
+  --transition-delay: 1s;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  transition: background-color, color, var(--transition-delay);
+
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+body.dark {
+  --accent-color: #d0d066;
+  --background-color: #333;
+  --text-color: white;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.sun-moon-container {
+  --rotation: 0;
+  position: absolute;
+  top: 0;
+  height: 200vmin;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* z-index: -1; */ /* the class takes hole screen so it cover the button. Use this or pointer-events to make button work */
+  pointer-events: none;
+  transition: transform var(--transition-delay);
+  transform: rotate(calc(var(--rotation) * 1deg));
+}
+
+/* .dark .sun-moon-container {
+  --rotation: 180deg;
+} */ /* i use .js to change rotation */
+
+.sun,
+.moon {
+  font-size: 4rem;
+  position: absolute;
+  transition: opacity, color, var(--transition-delay);
+  color: var(--accent-color);
+}
+
+.sun {
+  top: 5%;
+  opacity: 1;
+}
+
+.dark .sun {
+  opacity: 0;
+}
+
+.moon {
+  bottom: 5%;
+  opacity: 0;
+  transform: rotate(180deg); /* moon was upside down */
+}
+
+.dark .moon {
+  opacity: 1;
+}
+
+.theme-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border: none;
+  background-color: var(--accent-color);
+  color: var(--button-text-color);
+  font-size: 1.5rem;
+  border-radius: 7px;
+  padding: 1em;
+  outline: none;
+  cursor: pointer;
+  transition: color, background-color, transform, var(--transition-delay);
+  transform: scale(1);
+}
+
+.theme-btn:hover,
+.theme-btn:focus {
+  transform: scale(1.1);
+}
